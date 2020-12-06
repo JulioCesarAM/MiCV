@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane fx:id="view" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TitledPane animated="false" collapsible="false" layoutX="26.0" layoutY="14.0" prefHeight="146.0" prefWidth="588.0" text="Teléfonos">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="491.0" minWidth="10.0" prefWidth="481.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="85.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TableView fx:id="tableTelefono" editable="true" prefHeight="100.0" prefWidth="242.0" GridPane.rowSpan="2">
+                    <columns>
+                      <TableColumn fx:id="columnNumero" prefWidth="120.0" text="Número" />
+                      <TableColumn fx:id="columnTipo" prefWidth="104.0" text="Tipo" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="bAgregarTelefono" mnemonicParsing="false" onAction="#agregarTelefono" text="Añadir" GridPane.columnIndex="1" />
+                  <Button fx:id="bEliminarTelefono" mnemonicParsing="false" onAction="#eliminarTelefono" text="Eliminar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+               <padding>
+                  <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+               </padding>
+            </GridPane>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="26.0" layoutY="167.0" prefHeight="146.0" prefWidth="588.0" text="Direcciones de correo">
+         <content>
+            <GridPane>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="491.0" minWidth="10.0" prefWidth="481.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="85.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <TableView fx:id="tableEmail" editable="true" prefHeight="100.0" prefWidth="242.0" GridPane.rowSpan="2">
+                     <columns>
+                        <TableColumn fx:id="columnEmail" prefWidth="262.0" text="E-mail" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="bAgregarEmail" mnemonicParsing="false" onAction="#agregarEmail" text="Añadir" GridPane.columnIndex="1" />
+                  <Button fx:id="bEliminarEmail" mnemonicParsing="false" onAction="#eliminarEmail" text="Eliminar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+               <padding>
+                  <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+               </padding>
+            </GridPane>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="26.0" layoutY="320.0" prefHeight="146.0" prefWidth="588.0" text="Webs">
+         <content>
+            <GridPane>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="491.0" minWidth="10.0" prefWidth="481.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="85.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <TableView fx:id="tableUrl" editable="true" prefHeight="100.0" prefWidth="242.0" GridPane.rowSpan="2">
+                     <columns>
+                        <TableColumn fx:id="columnUrl" prefWidth="261.0" text="URL" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="bAgregarUrl" mnemonicParsing="false" onAction="#agregarUrl" text="Añadir" GridPane.columnIndex="1" />
+                  <Button fx:id="bnEliminarUrl" mnemonicParsing="false" onAction="#eliminarUrl" text="Eliminar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+               <padding>
+                  <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+               </padding>
+            </GridPane>
+         </content>
+      </TitledPane>
+   </children>
+</AnchorPane>
