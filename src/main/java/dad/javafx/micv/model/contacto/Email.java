@@ -1,9 +1,10 @@
 package dad.javafx.micv.model.contacto;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Email {
-	private StringProperty direccionCorreo;
+	private StringProperty direccionCorreo=new SimpleStringProperty();
 	
 	Email(){}
 

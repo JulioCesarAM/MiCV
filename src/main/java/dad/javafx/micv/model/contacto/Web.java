@@ -1,9 +1,10 @@
 package dad.javafx.micv.model.contacto;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Web {
-	private StringProperty url;
+	private StringProperty url=new SimpleStringProperty();
 	Web(){}
 	public StringProperty urlProperty() {
 		return this.url;

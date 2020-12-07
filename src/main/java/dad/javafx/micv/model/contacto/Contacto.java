@@ -8,28 +8,37 @@ import javafx.collections.FXCollections;
 
 public class Contacto {
 	private ListProperty<Telefono> listadoTelefonos = new SimpleListProperty<Telefono>(FXCollections.observableArrayList());
-	private ObjectProperty<Email> correoElectronico=new SimpleObjectProperty<>();
-	private ObjectProperty<Web>urlWeb = new SimpleObjectProperty<>();
+	private ListProperty<Email> correoElectronico= new SimpleListProperty<Email>(FXCollections.observableArrayList());
+	private ListProperty<Web> urlWeb= new SimpleListProperty<Web>(FXCollections.observableArrayList());
+	
 	public Contacto(){}
+	public void addTelefono(Telefono uno) {
+		this.listadoTelefonos.add(uno);
+	}
+
 	public ListProperty<Telefono> getListadoTelefonos() {
 		return listadoTelefonos;
 	}
-	public void addListadoTelefonos(Telefono listadoTelefonos) {
-		this.listadoTelefonos.add(listadoTelefonos);
+
+	public void setListadoTelefonos(ListProperty<Telefono> listadoTelefonos) {
+		this.listadoTelefonos = listadoTelefonos;
 	}
-	public ObjectProperty<Email> getCorreoElectronico() {
+
+	public ListProperty<Email> getCorreoElectronico() {
 		return correoElectronico;
 	}
-	public void setCorreoElectronico(ObjectProperty<Email> correoElectronico) {
+
+	public void setCorreoElectronico(ListProperty<Email> correoElectronico) {
 		this.correoElectronico = correoElectronico;
 	}
-	public ObjectProperty<Web> getUrlWeb() {
+
+	public ListProperty<Web> getUrlWeb() {
 		return urlWeb;
 	}
-	public void setUrlWeb(ObjectProperty<Web> urlWeb) {
+
+	public void setUrlWeb(ListProperty<Web> urlWeb) {
 		this.urlWeb = urlWeb;
 	}
-	
 	
 	
 
