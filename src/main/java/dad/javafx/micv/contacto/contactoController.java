@@ -69,12 +69,7 @@ public class contactoController implements Initializable {
 		columnNumero.setCellFactory(TextFieldTableCell.forTableColumn());
 		columnTipo.setCellValueFactory(cellData->cellData.getValue().tTelefonoProperty());
 		columnTipo.setCellFactory(ComboBoxTableCell.forTableColumn("Domicilio","Movil"));
-		//comboBoxTableCell.forTableColumn("Domicilio","Movil")
-//		columnUrl.setCellValueFactory(new PropertyValueFactory<Web, String>("direccion") );
-//		columnUrl.setCellFactory(TextFieldTableCell.forTableColumn());
-//		columnEmail.setCellValueFactory(new PropertyValueFactory<Email, String>("direccion"));
-//		columnEmail.setCellFactory(TextFieldTableCell.forTableColumn());
-		// TODO Auto-generated method stub
+
 		
 		this.contactoProperty.addListener((o, ov, nv) -> onCambiosContacto(o, ov, nv));
 		this.contactoProperty.set(new Contacto());
@@ -141,6 +136,9 @@ public class contactoController implements Initializable {
 			}
 
 				
+		}
+		if (result.get()==ButtonType.CANCEL) {
+			
 		}
 		
 	
