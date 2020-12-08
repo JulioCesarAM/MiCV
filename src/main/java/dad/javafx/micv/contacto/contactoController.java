@@ -51,8 +51,11 @@ public class contactoController implements Initializable {
 	@FXML
 	private TableView<Web>tableUrl;
 	@FXML
-	private TableColumn<Telefono,String> columnNumero, columnTipo; 
-	//columnEmail, columnUrl;
+	private TableColumn<Telefono,String> columnNumero, columnTipo;
+	@FXML
+	private TableColumn<Email,String> columnEmail;
+	@FXML
+	private TableColumn<Web,String> columnUrl;
 	@FXML
 	private Button bAgregarTelfono, bEliminarTelefono, bAgregarEmail, bEliminarEmail, bAgregarUrl, bnEliminarUrl;
 
@@ -69,8 +72,10 @@ public class contactoController implements Initializable {
 		columnNumero.setCellFactory(TextFieldTableCell.forTableColumn());
 		columnTipo.setCellValueFactory(cellData->cellData.getValue().tTelefonoProperty());
 		columnTipo.setCellFactory(ComboBoxTableCell.forTableColumn("Domicilio","Movil"));
-
-		
+		columnEmail.setCellValueFactory(cellData->cellData.getValue().direccionCorreoProperty());
+		columnNumero.setCellFactory(TextFieldTableCell.forTableColumn());
+		columnUrl.setCellValueFactory(cellData->cellData.getValue().urlProperty());
+		columnUrl.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.contactoProperty.addListener((o, ov, nv) -> onCambiosContacto(o, ov, nv));
 		this.contactoProperty.set(new Contacto());
 	}
@@ -121,24 +126,15 @@ public class contactoController implements Initializable {
 		if (result.isPresent()) {
 			if (result.get()!=ButtonType.CANCEL) {
 				Telefono nuevoTlf =new Telefono();
-				nuevoTlf.numeroTelefonoProperty().setValue(numero.textProperty().get());
-				String aux=(tipoTlf.getSelectionModel().getSelectedItem().toString().toLowerCase());
+				//nuevoTlf.numeroTelefonoProperty().setValue(numero.textProperty().get());
+				nuevoTlf.numeroTelefonoProperty().bindBidirectional(numero.textProperty());
+				//nuevoTlf.tTelefonoProperty().bind( tipoTlf.getSelectionModel().selectedItemProperty());
 				nuevoTlf.setTipoTelefono(tipoTlf.getSelectionModel().getSelectedItem().toString().toLowerCase().equals("domicilio")?"d":"m");
 				contactoProperty.get().addTelefono(nuevoTlf);
-				System.out.println(nuevoTlf.getTipoTelefono());
-				System.out.println(nuevoTlf.tTelefonoProperty().get());
-		
-				
-				
-				//tableTelefono.getI
-				//tableTelefono.getItems().add(nuevoTlf);
 				
 			}
 
 				
-		}
-		if (result.get()==ButtonType.CANCEL) {
-			
 		}
 		
 	
@@ -146,26 +142,126 @@ public class contactoController implements Initializable {
 
 	@FXML
 	private void eliminarTelefono() {
+		if (!tableTelefono.getSelectionModel().isEmpty())
+		{
+			Dialog<ButtonType> borrarTlf=new Dialog<>();
+			borrarTlf.setTitle("Eliminar");
+			borrarTlf.setHeaderText("vas a borrar el telefono");
+			ButtonType borrarTelefono =new ButtonType("borrar");
+			borrarTlf.getDialogPane().getButtonTypes().addAll(borrarTelefono,ButtonType.CANCEL);
+			Optional<ButtonType>result=borrarTlf.showAndWait();
+			if (result.isPresent()) {
+				if (result.get()!=ButtonType.CANCEL) {
+					//tableTelefono.getItems().remove(tableTelefono.getSelectionModel().getSelectedItem());
+					contactoProperty.get().getListadoTelefonos().remove(tableTelefono.getSelectionModel().getSelectedItem());
+				}
+			}
+			
+		}
 
 	}
 
 	@FXML
 	private void agregarEmail() {
+		
+		Dialog<ButtonType> agregarEmail=new Dialog<>();
+		agregarEmail.setTitle("nuevo Email");
+		agregarEmail.setHeaderText("crea una nueva direccion de correo");
+		//Creamos botones
+		ButtonType añadirCorreo =new ButtonType("aceptar");
+		agregarEmail.getDialogPane().getButtonTypes().addAll(añadirCorreo,ButtonType.CANCEL);
+		
+		//creamos el campo de  numero y su tipo
+		GridPane auxGridAgregarEmail=new GridPane();
+		auxGridAgregarEmail.setHgap(10);
+		auxGridAgregarEmail.setVgap(10);
+		TextField email = new TextField();
+		auxGridAgregarEmail.add(new Label("numero Email"), 0, 0);
+		auxGridAgregarEmail.add(email, 1, 0);
+		
+		agregarEmail.getDialogPane().setContent(auxGridAgregarEmail);
+		Optional<ButtonType> result=agregarEmail.showAndWait();
+		if (result.isPresent()) {
+			if (result.get()!=ButtonType.CANCEL) {
+				Email nuevoEmail=new Email();
+				nuevoEmail.direccionCorreoProperty().bind(email.textProperty());
+				contactoProperty.get().addEmail(nuevoEmail);
+				
+			}
+		}
 
 	}
 
 	@FXML
 	private void eliminarEmail() {
+		if (!tableEmail.getSelectionModel().isEmpty())
+		{
+			Dialog<ButtonType> borrarUrl=new Dialog<>();
+			borrarUrl.setTitle("Eliminar");
+			borrarUrl.setHeaderText("vas a borrar un correo");
+			ButtonType borrarWeb =new ButtonType("borrar");
+			borrarUrl.getDialogPane().getButtonTypes().addAll(borrarWeb,ButtonType.CANCEL);
+			Optional<ButtonType>result=borrarUrl.showAndWait();
+			if (result.isPresent()) {
+				if (result.get()!=ButtonType.CANCEL) {
+					//tableTelefono.getItems().remove(tableTelefono.getSelectionModel().getSelectedItem());
+					contactoProperty.get().getCorreoElectronico().remove(tableEmail.getSelectionModel().getSelectedItem());
+				}
+			}
+			
+		}
 
 	}
 
 	@FXML
 	private void agregarUrl() {
+		
+		Dialog<ButtonType> agregarWeb=new Dialog<>();
+		agregarWeb.setTitle("nuevo Web");
+		agregarWeb.setHeaderText("crea una nueva direccion web");
+		//Creamos botones
+		ButtonType añadirCorreo =new ButtonType("aceptar");
+		agregarWeb.getDialogPane().getButtonTypes().addAll(añadirCorreo,ButtonType.CANCEL);
+		
+		//creamos el campo de  numero y su tipo
+		GridPane auxGridAgregarEmail=new GridPane();
+		auxGridAgregarEmail.setHgap(10);
+		auxGridAgregarEmail.setVgap(10);
+		TextField url = new TextField();
+		auxGridAgregarEmail.add(new Label("numero Url"), 0, 0);
+		auxGridAgregarEmail.add(url, 1, 0);
+		
+		agregarWeb.getDialogPane().setContent(auxGridAgregarEmail);
+		Optional<ButtonType> result=agregarWeb.showAndWait();
+		if (result.isPresent()) {
+			if (result.get()!=ButtonType.CANCEL) {
+				Web nuevaUrl=new Web();
+				nuevaUrl.urlProperty().bindBidirectional(url.textProperty());
+				contactoProperty.get().addUrl(nuevaUrl);
+				
+			}
+		}
 
 	}
 
 	@FXML
 	private void eliminarUrl() {
+		if (!tableUrl.getSelectionModel().isEmpty())
+		{
+			Dialog<ButtonType> borrarUrl=new Dialog<>();
+			borrarUrl.setTitle("Eliminar");
+			borrarUrl.setHeaderText("vas a borrar una url");
+			ButtonType borrarWeb =new ButtonType("borrar");
+			borrarUrl.getDialogPane().getButtonTypes().addAll(borrarWeb,ButtonType.CANCEL);
+			Optional<ButtonType>result=borrarUrl.showAndWait();
+			if (result.isPresent()) {
+				if (result.get()!=ButtonType.CANCEL) {
+					//tableTelefono.getItems().remove(tableTelefono.getSelectionModel().getSelectedItem());
+					contactoProperty.get().getUrlWeb().get().remove(tableUrl.getSelectionModel().getSelectedItem());
+				}
+			}
+			
+		}
 
 	}
 

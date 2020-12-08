@@ -15,7 +15,12 @@ public class Contacto {
 	public void addTelefono(Telefono uno) {
 		this.listadoTelefonos.add(uno);
 	}
-
+	public void addEmail(Email dos) {
+		this.correoElectronico.add(dos);
+	}
+	public void addUrl(Web tres) {
+		this.urlWeb.add(tres);
+	}
 	public ListProperty<Telefono> getListadoTelefonos() {
 		return listadoTelefonos;
 	}

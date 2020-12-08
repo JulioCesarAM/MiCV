@@ -6,7 +6,7 @@ import javafx.beans.property.StringProperty;
 public class Email {
 	private StringProperty direccionCorreo=new SimpleStringProperty();
 	
-	Email(){}
+	public Email(){}
 
 	public StringProperty direccionCorreoProperty() {
 		return this.direccionCorreo;

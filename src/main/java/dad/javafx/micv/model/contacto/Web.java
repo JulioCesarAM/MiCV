@@ -5,7 +5,7 @@ import javafx.beans.property.StringProperty;
 
 public class Web {
 	private StringProperty url=new SimpleStringProperty();
-	Web(){}
+	public Web(){}
 	public StringProperty urlProperty() {
 		return this.url;
 	}
@@ -18,5 +18,4 @@ public class Web {
 		this.urlProperty().set(url);
 	}
 	
-
 }
