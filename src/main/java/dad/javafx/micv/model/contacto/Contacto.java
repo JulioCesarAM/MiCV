@@ -23,7 +23,7 @@ public class Contacto {
 	}
 	public ListProperty<Telefono> getListadoTelefonos() {
 		return listadoTelefonos;
-	}
+	} 
 
 	public void setListadoTelefonos(ListProperty<Telefono> listadoTelefonos) {
 		this.listadoTelefonos = listadoTelefonos;

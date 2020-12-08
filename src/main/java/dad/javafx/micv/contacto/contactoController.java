@@ -29,7 +29,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 public class contactoController implements Initializable {
-	
+	 
 	// modelo
 	Contacto testing=new Contacto();
 	private ObjectProperty<Contacto> contactoProperty = new SimpleObjectProperty<>();

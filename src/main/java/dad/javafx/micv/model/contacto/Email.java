@@ -7,7 +7,7 @@ public class Email {
 	private StringProperty direccionCorreo=new SimpleStringProperty();
 	
 	public Email(){}
-
+ 
 	public StringProperty direccionCorreoProperty() {
 		return this.direccionCorreo;
 	}
