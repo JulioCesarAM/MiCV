@@ -83,7 +83,7 @@ public class FormationController implements Initializable {
 		Optional<ButtonType> result = agregarFormacion.showAndWait();
 		if (result.isPresent()) {
 			Formation auxFormation = new Formation();
-			auxFormation.denominacionProperty().bindBidirectional(Denominacion.textProperty());
+			auxFormation.setDenominacion(Denominacion.textProperty().get());
 			auxFormation.desdeProperty().set(desde.getValue());
 			auxFormation.hastaProperty().set(hasta.getValue());
 			auxFormation.organizadorProperty().bindBidirectional(organizador.textProperty());

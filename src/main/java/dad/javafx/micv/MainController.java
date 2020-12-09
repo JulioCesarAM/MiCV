@@ -150,7 +150,7 @@ public class MainController implements Initializable {
 
     @FXML
     void onGuardarAction(ActionEvent event) {
-    	
+    	onGuardarComoAction(event);
     }
    public void setAuxCerrar(Stage u) {
     	auxCerrar=u;
@@ -172,6 +172,14 @@ public class MainController implements Initializable {
 					App.error("Ha ocurrido un error al guardar " + cvFile, e.getMessage());
 				}
 	    		
+	    	}
+	    	else {
+	    		try {
+					JSONUtils.toJson(cvFile, cv.get());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	    	}
     	
     }
