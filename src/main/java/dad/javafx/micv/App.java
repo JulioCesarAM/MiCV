@@ -25,6 +25,7 @@ public class App extends Application {
 		primaryStage.setScene(escena);
 		primaryStage.setTitle("MiCV");
 		primaryStage.getIcons().add(new Image("/images/cv64x64.png"));
+		controller.setAuxCerrar(primaryStage);
 		primaryStage.show();
 	}
 	

@@ -45,6 +45,7 @@ public class MainController implements Initializable {
 	private ObjectProperty<CV> cv = new SimpleObjectProperty<>();
 	
 	// view
+	private Stage auxCerrar;
 	
     @FXML
     private BorderPane view;
@@ -144,12 +145,15 @@ public class MainController implements Initializable {
 
     @FXML
     void onCerrarAction(ActionEvent event) {
-
+    	this.auxCerrar.close();
     }
 
     @FXML
     void onGuardarAction(ActionEvent event) {
-
+    	
+    }
+   public void setAuxCerrar(Stage u) {
+    	auxCerrar=u;
     }
 
     @FXML
