@@ -1,4 +1,4 @@
-package dad.javafx.micv.Formacion;
+package dad.javafx.micv.Experiencia;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +29,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.util.converter.LocalDateStringConverter;
 
-public class FormationController implements Initializable {
+public class ExperienciaController implements Initializable {
 	//modelo
 	ListProperty<Formation>formacion=new SimpleListProperty<>(FXCollections.observableArrayList());
 
@@ -61,7 +61,7 @@ public class FormationController implements Initializable {
     void agregarFormacion(ActionEvent event) {
     	
     	Dialog<ButtonType> agregarFormacion=new Dialog<>();
-		agregarFormacion.setTitle("nuevo titulo");
+		agregarFormacion.setTitle("nueva experiencia");
 		//Creamos botones
 		ButtonType crearFormaciono =new ButtonType("crear");
 		agregarFormacion.getDialogPane().getButtonTypes().addAll(crearFormaciono,ButtonType.CANCEL);
@@ -84,21 +84,21 @@ public class FormationController implements Initializable {
 		Optional<ButtonType> result=agregarFormacion.showAndWait();
 		if(result.isPresent()) {
 			Formation auxFormation=new Formation();
-			auxFormation.denominacionProperty().bindBidirectional(Denominacion.textProperty());
-			auxFormation.desdeProperty().set(desde.getValue());
-			auxFormation.hastaProperty().set(hasta.getValue());
-			auxFormation.organizadorProperty().bindBidirectional(organizador.textProperty());
 			if (result.get()!=ButtonType.CANCEL) {
-				
+				auxFormation.denominacionProperty().bindBidirectional(Denominacion.textProperty());
+				auxFormation.desdeProperty().set(desde.getValue());
+				auxFormation.hastaProperty().set(hasta.getValue());
+				auxFormation.organizadorProperty().bindBidirectional(organizador.textProperty());
+	
+			
+			
 				formacion.add(auxFormation);
 			}
 			
-			
 		}
+		
+		
     }
-		
-		
-    
 
     @FXML
     void eliminarFormacion(ActionEvent event) {
@@ -106,7 +106,7 @@ public class FormationController implements Initializable {
 		{
 			Dialog<ButtonType> borrarTitulo=new Dialog<>();
 			borrarTitulo.setTitle("Eliminar");
-			borrarTitulo.setHeaderText("vas a borrar el titulo");
+			borrarTitulo.setHeaderText("vas a borrar la experiencia");
 			ButtonType borrarFormation =new ButtonType("borrar");
 			borrarTitulo.getDialogPane().getButtonTypes().addAll(borrarFormation,ButtonType.CANCEL);
 			Optional<ButtonType>result=borrarTitulo.showAndWait();
@@ -147,7 +147,7 @@ public class FormationController implements Initializable {
 	
 	
 
-	public FormationController() throws IOException {
+	public ExperienciaController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/formationView.fxml"));
 		loader.setController(this);
 		loader.load();

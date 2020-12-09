@@ -1,4 +1,4 @@
-package dad.javafx.micv.model.formacion;
+package dad.javafx.micv.model.Experiencia;
 
 
 
@@ -12,7 +12,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Formation {
+public class Experiencia {
 	private StringProperty denominacion = new SimpleStringProperty();
 	private StringProperty organizador =new SimpleStringProperty();
 	private ObjectProperty<LocalDate>desde=new SimpleObjectProperty<>();
@@ -20,7 +20,7 @@ public class Formation {
 
 	
 	
-	public Formation(){
+	public Experiencia(){
 		
 	}
 	
