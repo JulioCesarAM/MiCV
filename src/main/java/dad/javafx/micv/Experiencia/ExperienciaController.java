@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import dad.javafx.micv.model.formacion.Formation;
+import dad.javafx.micv.model.Experiencia.Experiencia;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ObservableValue;
@@ -17,7 +17,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Dialog;
@@ -31,25 +30,25 @@ import javafx.util.converter.LocalDateStringConverter;
 
 public class ExperienciaController implements Initializable {
 	//modelo
-	ListProperty<Formation>formacion=new SimpleListProperty<>(FXCollections.observableArrayList());
+	ListProperty<Experiencia>expformacion=new SimpleListProperty<>(FXCollections.observableArrayList());
 
     @FXML
     private GridPane view;
 
     @FXML
-    private TableView<Formation> tableFormacion;
+    private TableView<Experiencia> tableFormacion;
 
     @FXML
-    private TableColumn<Formation, LocalDate> cDesde;
+    private TableColumn<Experiencia, LocalDate> cDesde;
 
     @FXML
-    private TableColumn<Formation, LocalDate> cHasta;
+    private TableColumn<Experiencia, LocalDate> cHasta;
 
     @FXML
-    private TableColumn<Formation, String> cDenominacion;
+    private TableColumn<Experiencia, String> cDenominacion;
 
     @FXML
-    private TableColumn<Formation, String> cOrganizador;
+    private TableColumn<Experiencia, String> cOrganizador;
 
     @FXML
     private Button bAgregar;
@@ -83,7 +82,7 @@ public class ExperienciaController implements Initializable {
 		agregarFormacion.getDialogPane().setContent(nuevoTitulo);
 		Optional<ButtonType> result=agregarFormacion.showAndWait();
 		if(result.isPresent()) {
-			Formation auxFormation=new Formation();
+			Experiencia auxFormation=new Experiencia();
 			if (result.get()!=ButtonType.CANCEL) {
 				auxFormation.denominacionProperty().bindBidirectional(Denominacion.textProperty());
 				auxFormation.desdeProperty().set(desde.getValue());
@@ -92,7 +91,7 @@ public class ExperienciaController implements Initializable {
 	
 			
 			
-				formacion.add(auxFormation);
+				expformacion.add(auxFormation);
 			}
 			
 		}
@@ -113,7 +112,7 @@ public class ExperienciaController implements Initializable {
 			if (result.isPresent()) {
 				if (result.get()!=ButtonType.CANCEL) {
 					//tableTelefono.getItems().remove(tableTelefono.getSelectionModel().getSelectedItem());
-					formacion.get().remove(tableFormacion.getSelectionModel().getSelectedItem());
+					expformacion.get().remove(tableFormacion.getSelectionModel().getSelectedItem());
 				}
 			}
 			
@@ -133,13 +132,13 @@ public class ExperienciaController implements Initializable {
 		cOrganizador.setCellFactory(TextFieldTableCell.forTableColumn());
 		
 		
-		this.formacion.addListener((o,ov,nv)->onFormationChange(o,ov,nv));
+		this.expformacion.addListener((o,ov,nv)->onFormationChange(o,ov,nv));
 	
 		
 	}
-	private void onFormationChange(ObservableValue<? extends ObservableList<Formation>> o,
-			ObservableList<Formation> ov, ObservableList<Formation> nv) {
-			tableFormacion.itemsProperty().bindBidirectional(formacion);
+	private void onFormationChange(ObservableValue<? extends ObservableList<Experiencia>> o,
+			ObservableList<Experiencia> ov, ObservableList<Experiencia> nv) {
+			tableFormacion.itemsProperty().bindBidirectional(expformacion);
 
 	}
 
@@ -160,5 +159,20 @@ public class ExperienciaController implements Initializable {
 	public void setView(GridPane view) {
 		this.view = view;
 	}
+
+	public ListProperty<Experiencia> expformacionProperty() {
+		return this.expformacion;
+	}
+	
+
+	public ObservableList<Experiencia> getFormacion() {
+		return this.expformacionProperty().get();
+	}
+	
+
+	public void setFormacion(final ObservableList<Experiencia> formacion) {
+		this.expformacionProperty().set(formacion);
+	}
+	
 
 }

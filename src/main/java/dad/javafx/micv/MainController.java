@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import com.google.gson.JsonSyntaxException;
 
+import dad.javafx.micv.Conocimientos.ConocimientoController;
 import dad.javafx.micv.Experiencia.ExperienciaController;
 import dad.javafx.micv.Formacion.FormationController;
 import dad.javafx.micv.contacto.contactoController;
@@ -20,10 +21,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class MainController implements Initializable {
 	
@@ -34,6 +39,7 @@ public class MainController implements Initializable {
 	private contactoController contactoController=new contactoController();
 	private FormationController formationController=new FormationController();
 	private ExperienciaController experienciaController=new ExperienciaController();
+	private ConocimientoController cononocimientoController=new ConocimientoController();
 	// model
 	
 	private ObjectProperty<CV> cv = new SimpleObjectProperty<>();
@@ -71,6 +77,7 @@ public class MainController implements Initializable {
 		contactoTab.setContent(contactoController.getView());
 		this.formacionTab.setContent(formationController.getView());
 		this.experienciaTab.setContent(experienciaController.getView());
+		this.conocimientosTab.setContent(cononocimientoController.getView());
 		
 		cv.addListener((o, ov, nv) -> onCVChanged(o, ov, nv));
 		
@@ -81,12 +88,18 @@ public class MainController implements Initializable {
 
 		if (ov != null) {
 			personalController.personalProperty().unbind();
-			// TODO desbindear el resto de controladores
+			contactoController.contactoPropertyProperty().unbind();
+			formationController.formacionProperty().unbind();
+			experienciaController.expformacionProperty().unbind();
+			cononocimientoController.conocimientosModeloProperty().unbind();
 		}
 		
 		if (nv != null) {
 			personalController.personalProperty().bind(nv.personalProperty());
-			// TODO bindear el resto de controladores
+			contactoController.contactoPropertyProperty().bind(nv.contactoProperty());
+			formationController.formacionProperty().bind(nv.formacionesProperty());
+			experienciaController.expformacionProperty().bind(nv.experienciaProperty());
+			cononocimientoController.conocimientosModeloProperty().bind(nv.conocimientoProperty());
 		}
 		
 	}
@@ -118,7 +131,15 @@ public class MainController implements Initializable {
 
     @FXML
     void onAcercaDeAction(ActionEvent event) {
+    	Stage stage=(Stage)view.getScene().getWindow();
 
+    	Alert alert=new Alert(AlertType.INFORMATION);
+    	alert.initModality(Modality.APPLICATION_MODAL);
+    	alert.initOwner(stage);
+    	alert.setTitle("Acerca de MiCV");
+    	alert.setHeaderText("Proyecto MiCV");
+    	alert.setContentText("que dios se apiade ");   
+    	alert.showAndWait();
     }
 
     @FXML
@@ -153,8 +174,12 @@ public class MainController implements Initializable {
 
     @FXML
     void onNuevoAction(ActionEvent event) {
-    	System.out.println("Nuevo");
+    	try {
+
     	cv.set(new CV());
+    	}catch(Exception e) {
+    		System.out.println("Nuevo");
+    	}
     }
     
 }
