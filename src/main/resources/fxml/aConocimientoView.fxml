@@ -43,7 +43,11 @@
       <Button mnemonicParsing="false" onAction="#onCancelarButtonConocimiento" text="Cancelar" GridPane.columnIndex="4" GridPane.rowIndex="3" />
       <ComboBox fx:id="cbConocimientoCombo" prefWidth="150.0" promptText="Elija un nivel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Button mnemonicParsing="false" onAction="#butonXConocimiento" text="X" GridPane.columnIndex="2" GridPane.rowIndex="1">
+=======
+      <Button mnemonicParsing="false" onAction="#onXButtonConocimiento" text="X" GridPane.columnIndex="2" GridPane.rowIndex="1">
+>>>>>>> parent of c626a85... cambios menores
 =======
       <Button mnemonicParsing="false" onAction="#onXButtonConocimiento" text="X" GridPane.columnIndex="2" GridPane.rowIndex="1">
 >>>>>>> parent of c626a85... cambios menores
