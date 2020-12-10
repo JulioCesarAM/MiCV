@@ -74,7 +74,7 @@ public class ConocimientoController implements Initializable {
 	private ComboBox<String> cbIdiomaCombo = new ComboBox<>();
 
 	@FXML
-	private TextField certificacionIdiomaTF;
+	private TextField certificacionTF;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -119,12 +119,12 @@ public class ConocimientoController implements Initializable {
 	}
 
 	@FXML
-	void cancelarConocimiento(ActionEvent event) {
+	void onCancelarButtonConocimiento(ActionEvent event) {
 		stageConocimiento.close();
 	}
 
 	@FXML
-	void crearPantallaConocimiento(ActionEvent event) {
+	void onCrearButtonConocimiento(ActionEvent event) {
 
 		Conocimientos auxConocimiento = new Conocimientos();
 		auxConocimiento.setDenominacion(tfDenominacionC.textProperty().get());
@@ -141,12 +141,12 @@ public class ConocimientoController implements Initializable {
 	}
 
 	@FXML
-	void botonXConocimiento(ActionEvent event) {
+	void onXButtonConocimiento(ActionEvent event) {
 		cbConocimientoCombo.valueProperty().set(null);
 	}
 
 	@FXML
-	void crearPantallaIdioma(ActionEvent event) {
+	void onBtnAñadirIdioma(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/aIdiomaConocimientoView.fxml"));
 			loader.setController(this);
@@ -185,16 +185,16 @@ public class ConocimientoController implements Initializable {
 	}
 
 	@FXML
-	void canselarIdioma(ActionEvent event) {
+	void onCancelarButtonIdioma(ActionEvent event) {
 		stageConocimiento.close();
 	}
 
 	@FXML
-	void crearIdioma(ActionEvent event) {
+	void onCrearButtonIdioma(ActionEvent event) {
 		Conocimientos auxConocimientoIdioma = new Conocimientos();
 		auxConocimientoIdioma.setDenominacion(denominacionIdiomaTF.textProperty().get());
 		auxConocimientoIdioma.setNivel(cbIdiomaCombo.getValue().toLowerCase());
-		auxConocimientoIdioma.setCertificacion(certificacionIdiomaTF.textProperty().get());
+		auxConocimientoIdioma.setCertificacion(certificacionTF.textProperty().get());
 		if (auxConocimientoIdioma.getDenominacion().isEmpty() || auxConocimientoIdioma.getNivelTipo().isEmpty()) {
 			Alert aux = new Alert(AlertType.ERROR);
 			aux.setContentText("error ");
@@ -207,7 +207,7 @@ public class ConocimientoController implements Initializable {
 	}
 
 	@FXML
-	void botonXIdioma(ActionEvent event) {
+	void onXIdiomaButtonAction(ActionEvent event) {
 		cbIdiomaCombo.valueProperty().set(null);
 	}
 
