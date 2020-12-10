@@ -113,6 +113,7 @@ public class PersonalController implements Initializable {
 			// TODO: handle exception
 		}
 		paisCombo.getSelectionModel().select(0);
+	
 
 	}
 
@@ -166,7 +167,8 @@ public class PersonalController implements Initializable {
 
 		Optional<Nacionalidad> eleccion = dialog.showAndWait();
 		if (eleccion.isPresent()) {
-				if (!eleccion.isEmpty()) {
+				if (!eleccion.isEmpty()) {	
+					
 				nacionalidadesList.getItems().add(eleccion.get());
 				quitarNacionalidadButton.setDisable(false);
 				}
