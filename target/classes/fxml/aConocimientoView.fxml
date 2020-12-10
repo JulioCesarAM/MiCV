@@ -35,14 +35,14 @@
          </GridPane.margin>
       </Label>
       <TextField fx:id="tfDenominacionC" GridPane.columnIndex="1" GridPane.columnSpan="4" />
-      <Button mnemonicParsing="false" onAction="#onCrearButtonConocimiento" text="Crear" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+      <Button mnemonicParsing="false" onAction="#crearConocimientoBtn" text="Crear" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets right="5.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" onAction="#onCancelarButtonConocimiento" text="Cancelar" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Button mnemonicParsing="false" onAction="#cancelarConocimiento" text="Cancelar" GridPane.columnIndex="4" GridPane.rowIndex="3" />
       <ComboBox fx:id="cbConocimientoCombo" prefWidth="150.0" promptText="Elija un nivel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Button mnemonicParsing="false" onAction="#onXButtonConocimiento" text="X" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Button mnemonicParsing="false" onAction="#botonXConocimiento" text="X" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin>
