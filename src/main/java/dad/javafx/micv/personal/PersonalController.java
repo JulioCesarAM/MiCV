@@ -38,39 +38,38 @@ public class PersonalController implements Initializable {
 	private GridPane view;
 
 	@FXML
-	private TextField identificacionText;
+	private TextField identificacionTextField;
 
 	@FXML
-	private TextField nombreText;
+	private TextField nombreTextField;
 
 	@FXML
-	private TextField apellidosText;
+	private TextField apellidosTextField;
 
 	@FXML
 	private DatePicker fechaNacimientoDate;
 
 	@FXML
-	private TextArea direccionText;
+	private TextArea textAreaDireccion;
 
 	@FXML
-	private TextField codigoPostalText;
+	private TextField codPostalTextField;
 
 	@FXML
-	private TextField localidadText;
+	private TextField localidadTextField;
 
 	@FXML
-	private ListView<Nacionalidad> nacionalidadesList;
+	private ListView<Nacionalidad> listViewNacionalidades;
 
 	@FXML
 	private ComboBox<String> paisCombo;
 
 	@FXML
-	private Button nuevaNacionalidadButton;
+	private Button BttnNacionalidadNuevan,BttnQuitarNacionalidad;
 
-	@FXML
-	private Button quitarNacionalidadButton;
 
-	private List<Nacionalidad> listaElecciones;
+
+	private List<Nacionalidad> nacionalidadesListas;
 
 	public PersonalController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PersonalView.fxml"));
@@ -81,10 +80,10 @@ public class PersonalController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		personal.addListener((o, ov, nv) -> onPersonalChanged(o, ov, nv));
+		personal.addListener((o, ov, nv) -> onPersonallControllerChanged(o, ov, nv));
 
-		listaElecciones = new ArrayList<>();
-		quitarNacionalidadButton.setDisable(true);
+		nacionalidadesListas = new ArrayList<>();
+		BttnQuitarNacionalidad.setDisable(true);
 
 		try {
 			BufferedReader csvReader = new BufferedReader(new FileReader("src/main/resources/csv/nacionalidades.csv"));
@@ -92,7 +91,7 @@ public class PersonalController implements Initializable {
 
 			while ((row = csvReader.readLine()) != null) {
 				Nacionalidad nac = new Nacionalidad(row);
-				listaElecciones.add(nac);
+				nacionalidadesListas.add(nac);
 			}
 			csvReader.close();
 		} catch (IOException e) {
@@ -117,36 +116,36 @@ public class PersonalController implements Initializable {
 
 	}
 
-	private void onPersonalChanged(ObservableValue<? extends Personal> o, Personal ov, Personal nv) {
+	private void onPersonallControllerChanged(ObservableValue<? extends Personal> o, Personal ov, Personal nv) {
 
 		System.out.println("ov=" + ov + "/nv=" + nv);
 
 		if (ov != null) {
 
-			identificacionText.textProperty().unbindBidirectional(ov.identificacionProperty());
-			nombreText.textProperty().unbindBidirectional(ov.nombreProperty());
-			apellidosText.textProperty().unbindBidirectional(ov.apellidosProperty());
+			identificacionTextField.textProperty().unbindBidirectional(ov.identificacionProperty());
+			nombreTextField.textProperty().unbindBidirectional(ov.nombreProperty());
+			apellidosTextField.textProperty().unbindBidirectional(ov.apellidosProperty());
 			fechaNacimientoDate.valueProperty().unbindBidirectional(ov.fechaNacimientoProperty());
-			direccionText.textProperty().unbindBidirectional(ov.direccionProperty());
-			localidadText.textProperty().unbindBidirectional(ov.localidadProperty());
-			codigoPostalText.textProperty().unbindBidirectional(ov.codigoPostalProperty());
+			textAreaDireccion.textProperty().unbindBidirectional(ov.direccionProperty());
+			localidadTextField.textProperty().unbindBidirectional(ov.localidadProperty());
+			codPostalTextField.textProperty().unbindBidirectional(ov.codigoPostalProperty());
 			paisCombo.valueProperty().unbindBidirectional(ov.paisProperty());
-			nacionalidadesList.itemsProperty().unbindBidirectional(ov.nacionalidadesProperty());
+			listViewNacionalidades.itemsProperty().unbindBidirectional(ov.nacionalidadesProperty());
 			// TODO desbindear el resto de propiedades
 
 		}
 
 		if (nv != null) {
 
-			identificacionText.textProperty().bindBidirectional(nv.identificacionProperty());
-			nombreText.textProperty().bindBidirectional(nv.nombreProperty());
-			apellidosText.textProperty().bindBidirectional(nv.apellidosProperty());
+			identificacionTextField.textProperty().bindBidirectional(nv.identificacionProperty());
+			nombreTextField.textProperty().bindBidirectional(nv.nombreProperty());
+			apellidosTextField.textProperty().bindBidirectional(nv.apellidosProperty());
 			fechaNacimientoDate.valueProperty().bindBidirectional(nv.fechaNacimientoProperty());
-			direccionText.textProperty().bindBidirectional(nv.direccionProperty());
-			localidadText.textProperty().bindBidirectional(nv.localidadProperty());
-			codigoPostalText.textProperty().bindBidirectional(nv.codigoPostalProperty());
+			textAreaDireccion.textProperty().bindBidirectional(nv.direccionProperty());
+			localidadTextField.textProperty().bindBidirectional(nv.localidadProperty());
+			codPostalTextField.textProperty().bindBidirectional(nv.codigoPostalProperty());
 			paisCombo.valueProperty().bindBidirectional(nv.paisProperty());
-			nacionalidadesList.itemsProperty().bindBidirectional(nv.nacionalidadesProperty());
+			listViewNacionalidades.itemsProperty().bindBidirectional(nv.nacionalidadesProperty());
 			// TODO bindear el resto de propiedades
 
 		}
@@ -160,7 +159,7 @@ public class PersonalController implements Initializable {
 	@FXML
 	void onNuevaNacionalidadAction(ActionEvent event) {
 
-		ChoiceDialog<Nacionalidad> dialog = new ChoiceDialog<>(listaElecciones.get(0), listaElecciones);
+		ChoiceDialog<Nacionalidad> dialog = new ChoiceDialog<>(nacionalidadesListas.get(0), nacionalidadesListas);
 		dialog.setHeaderText("Nueva nacionalidad");
 		dialog.setTitle("Añadir nacionalidad");
 		dialog.setContentText("Seleccione una nacionalidad");
@@ -169,8 +168,8 @@ public class PersonalController implements Initializable {
 		if (eleccion.isPresent()) {
 				if (!eleccion.isEmpty()) {	
 					
-				nacionalidadesList.getItems().add(eleccion.get());
-				quitarNacionalidadButton.setDisable(false);
+				listViewNacionalidades.getItems().add(eleccion.get());
+				BttnQuitarNacionalidad.setDisable(false);
 				}
 			}
 		
@@ -180,20 +179,20 @@ public class PersonalController implements Initializable {
 
 	@FXML
 	void onQuitarNacionalidadAction(ActionEvent event) {
-		ChoiceDialog<Nacionalidad> dialog = new ChoiceDialog<>(nacionalidadesList.getItems().get(0),
-				nacionalidadesList.getItems());
+		ChoiceDialog<Nacionalidad> dialog = new ChoiceDialog<>(listViewNacionalidades.getItems().get(0),
+				listViewNacionalidades.getItems());
 		dialog.setHeaderText("Quitar nacionalidad");
 		dialog.setTitle("Quitar nacionalidad");
 		dialog.setContentText("Seleccione una nacionalidad");
 		Optional<Nacionalidad> eleccion = dialog.showAndWait();
 
 		if (eleccion.isPresent()) {
-			nacionalidadesList.getItems().remove(eleccion.get());
+			listViewNacionalidades.getItems().remove(eleccion.get());
 
-			if (nacionalidadesList.getItems().isEmpty()) {
-				quitarNacionalidadButton.setDisable(true);
+			if (listViewNacionalidades.getItems().isEmpty()) {
+				BttnQuitarNacionalidad.setDisable(true);
 			} else {
-				quitarNacionalidadButton.setDisable(false);
+				BttnQuitarNacionalidad.setDisable(false);
 			}
 		}
 
