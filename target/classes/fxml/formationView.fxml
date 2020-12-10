@@ -10,15 +10,15 @@
 
 <GridPane fx:id="view" prefHeight="425.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <rowConstraints>
-      <RowConstraints maxHeight="379.0" minHeight="0.0" prefHeight="33.0" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="402.0" minHeight="0.0" prefHeight="389.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="262.0" minHeight="31.0" prefHeight="31.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="386.0" minHeight="155.0" prefHeight="386.0" vgrow="ALWAYS" />
    </rowConstraints>
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" maxWidth="611.0" minWidth="0.0" prefWidth="591.0" />
       <ColumnConstraints hgrow="ALWAYS" maxWidth="299.0" minWidth="0.0" prefWidth="80.0" />
    </columnConstraints>
    <children>
-      <TableView fx:id="tableFormacion" prefHeight="200.0" prefWidth="200.0" GridPane.rowSpan="2">
+      <TableView fx:id="tableFormacion" GridPane.rowSpan="2">
         <columns>
           <TableColumn fx:id="cDesde" prefWidth="75.0" text="Desde" />
           <TableColumn fx:id="cHasta" prefWidth="75.0" text="Hasta" />
@@ -29,12 +29,12 @@
             <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
          </GridPane.margin>
       </TableView>
-      <Button fx:id="bAgregar" mnemonicParsing="false" onAction="#agregarFormacion" prefHeight="25.0" prefWidth="59.0" text="Añadir" GridPane.columnIndex="1">
+      <Button fx:id="bAgregar" mnemonicParsing="false" onAction="#agregarFormacion" text="Añadir" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
          <GridPane.margin>
             <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="bEliminar" mnemonicParsing="false" onAction="#eliminarFormacion" text="Eliminar" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <Button fx:id="bEliminar" mnemonicParsing="false" onAction="#eliminarFormacion" prefHeight="25.0" prefWidth="51.0" text="Eliminar" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
          <GridPane.margin>
             <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
          </GridPane.margin>
