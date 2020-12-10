@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import dad.javafx.micv.model.Conocimientos.Conocimientos;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -77,15 +78,24 @@ public class ConocimientoController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		nivelConocimientoCombo.getItems().addAll("basico", "medio", "avanzado");
 		nivelIdiomaCombo.getItems().addAll("basico", "medio", "avanzado");
-
-		tableC.itemsProperty().bindBidirectional(conocimientosModelo);
+		this.conocimientosModelo.addListener((o,ov,nv)->onCambios(o,ov,nv));	
 		denominacionCol.setCellValueFactory(cellData -> cellData.getValue().denominacionProperty());
 		denominacionCol.setCellFactory(TextFieldTableCell.forTableColumn());
 		nivelCol.setCellValueFactory(cellData -> cellData.getValue().nivelTipoProperty());
 		nivelCol.setCellFactory(ComboBoxTableCell.forTableColumn("basico", "medio", "avanzado"));
 
+	}
+
+	private void onCambios(ObservableValue<? extends ObservableList<Conocimientos>> o,
+			ObservableList<Conocimientos> ov, ObservableList<Conocimientos> nv) {
+			if (ov!=null)
+				tableC.itemsProperty().unbindBidirectional(conocimientosModelo);
+			if(nv!=null)
+				tableC.itemsProperty().bindBidirectional(conocimientosModelo);
+		
 	}
 
 	@FXML
@@ -117,7 +127,7 @@ public class ConocimientoController implements Initializable {
 	void onCrearButtonConocimiento(ActionEvent event) {
 
 		Conocimientos auxConocimiento = new Conocimientos();
-		auxConocimiento.denominacionProperty().bindBidirectional(denominacionConocimientoTF.textProperty());
+		auxConocimiento.setDenominacion(denominacionConocimientoTF.textProperty().get());
 		auxConocimiento.setNivel(nivelConocimientoCombo.getValue().toLowerCase());
 		if (auxConocimiento.getDenominacion().isEmpty() || auxConocimiento.getNivelTipo().isEmpty()) {
 			Alert aux = new Alert(AlertType.ERROR);
@@ -182,9 +192,9 @@ public class ConocimientoController implements Initializable {
 	@FXML
 	void onCrearButtonIdioma(ActionEvent event) {
 		Conocimientos auxConocimientoIdioma = new Conocimientos();
-		auxConocimientoIdioma.denominacionProperty().bindBidirectional(denominacionIdiomaTF.textProperty());
+		auxConocimientoIdioma.setDenominacion(denominacionIdiomaTF.textProperty().get());
 		auxConocimientoIdioma.setNivel(nivelIdiomaCombo.getValue().toLowerCase());
-		auxConocimientoIdioma.certificacionProperty().bindBidirectional( certificacionTF.textProperty());
+		auxConocimientoIdioma.setCertificacion(certificacionTF.textProperty().get());
 		if (auxConocimientoIdioma.getDenominacion().isEmpty() || auxConocimientoIdioma.getNivelTipo().isEmpty()) {
 			Alert aux = new Alert(AlertType.ERROR);
 			aux.setContentText("error ");

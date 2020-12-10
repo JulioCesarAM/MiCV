@@ -84,10 +84,10 @@ public class ExperienciaController implements Initializable {
 		if(result.isPresent()) {
 			Experiencia auxFormation=new Experiencia();
 			if (result.get()!=ButtonType.CANCEL) {
-				auxFormation.denominacionProperty().bindBidirectional(Denominacion.textProperty());
+				auxFormation.setDenominacion(Denominacion.textProperty().get());
 				auxFormation.desdeProperty().set(desde.getValue());
 				auxFormation.hastaProperty().set(hasta.getValue());
-				auxFormation.organizadorProperty().bindBidirectional(organizador.textProperty());
+				auxFormation.setOrganizador(organizador.textProperty().get());
 	
 			
 			
@@ -138,7 +138,10 @@ public class ExperienciaController implements Initializable {
 	}
 	private void onFormationChange(ObservableValue<? extends ObservableList<Experiencia>> o,
 			ObservableList<Experiencia> ov, ObservableList<Experiencia> nv) {
-			tableFormacion.itemsProperty().bindBidirectional(expformacion);
+			if (ov!=null)
+				tableFormacion.itemsProperty().unbindBidirectional(expformacion);
+			if (nv!=null)
+				tableFormacion.itemsProperty().bindBidirectional(expformacion);
 
 	}
 

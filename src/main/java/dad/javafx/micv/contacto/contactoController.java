@@ -127,7 +127,7 @@ public class contactoController implements Initializable {
 			if (result.get() != ButtonType.CANCEL) {
 				Telefono nuevoTlf = new Telefono();
 				// nuevoTlf.numeroTelefonoProperty().setValue(numero.textProperty().get());
-				nuevoTlf.numeroTelefonoProperty().bindBidirectional(numero.textProperty());
+				nuevoTlf.setNumeroTelefono(numero.textProperty().get());
 				// nuevoTlf.tTelefonoProperty().bind(
 				// tipoTlf.getSelectionModel().selectedItemProperty());
 				nuevoTlf.setTipoTelefono(
@@ -185,7 +185,7 @@ public class contactoController implements Initializable {
 		if (result.isPresent()) {
 			if (result.get() != ButtonType.CANCEL) {
 				Email nuevoEmail = new Email();
-				nuevoEmail.direccionCorreoProperty().bind(email.textProperty());
+				nuevoEmail.setDireccionCorreo(email.textProperty().get());
 				contactoProperty.get().addEmail(nuevoEmail);
 
 			}
@@ -237,7 +237,7 @@ public class contactoController implements Initializable {
 		if (result.isPresent()) {
 			if (result.get() != ButtonType.CANCEL) {
 				Web nuevaUrl = new Web();
-				nuevaUrl.urlProperty().bindBidirectional(url.textProperty());
+				nuevaUrl.setUrl(url.textProperty().get());
 				contactoProperty.get().addUrl(nuevaUrl);
 
 			}

@@ -86,7 +86,7 @@ public class FormationController implements Initializable {
 			auxFormation.setDenominacion(Denominacion.textProperty().get());
 			auxFormation.desdeProperty().set(desde.getValue());
 			auxFormation.hastaProperty().set(hasta.getValue());
-			auxFormation.organizadorProperty().bindBidirectional(organizador.textProperty());
+			auxFormation.setOrganizador(organizador.textProperty().get());
 			if (result.get() != ButtonType.CANCEL) {
 
 				formacion.add(auxFormation);
@@ -132,7 +132,10 @@ public class FormationController implements Initializable {
 
 	private void onFormationChange(ObservableValue<? extends ObservableList<Formation>> o, ObservableList<Formation> ov,
 			ObservableList<Formation> nv) {
-		tableFormacion.itemsProperty().bindBidirectional(formacion);
+		if(ov!=null)
+			tableFormacion.itemsProperty().unbindBidirectional(formacion);
+		if(nv!=null)
+			tableFormacion.itemsProperty().bindBidirectional(formacion);
 
 	}
 
