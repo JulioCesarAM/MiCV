@@ -74,7 +74,7 @@ public class ConocimientoController implements Initializable {
 	private ComboBox<String> cbIdiomaCombo = new ComboBox<>();
 
 	@FXML
-	private TextField certificacionTF;
+	private TextField CertificaciónIdiomaTf;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -119,12 +119,12 @@ public class ConocimientoController implements Initializable {
 	}
 
 	@FXML
-	void onCancelarButtonConocimiento(ActionEvent event) {
+	void oonCancelarConocimiento(ActionEvent event) {
 		stageConocimiento.close();
 	}
 
 	@FXML
-	void onCrearButtonConocimiento(ActionEvent event) {
+	void onCrearConocimientoM(ActionEvent event) {
 
 		Conocimientos auxConocimiento = new Conocimientos();
 		auxConocimiento.setDenominacion(tfDenominacionC.textProperty().get());
@@ -185,16 +185,16 @@ public class ConocimientoController implements Initializable {
 	}
 
 	@FXML
-	void onCancelarButtonIdioma(ActionEvent event) {
+	void onCancelarIdioma(ActionEvent event) {
 		stageConocimiento.close();
 	}
 
 	@FXML
-	void onCrearButtonIdioma(ActionEvent event) {
+	void onCrearIdioma(ActionEvent event) {
 		Conocimientos auxConocimientoIdioma = new Conocimientos();
 		auxConocimientoIdioma.setDenominacion(denominacionIdiomaTF.textProperty().get());
 		auxConocimientoIdioma.setNivel(cbIdiomaCombo.getValue().toLowerCase());
-		auxConocimientoIdioma.setCertificacion(certificacionTF.textProperty().get());
+		auxConocimientoIdioma.setCertificacion(CertificaciónIdiomaTf.textProperty().get());
 		if (auxConocimientoIdioma.getDenominacion().isEmpty() || auxConocimientoIdioma.getNivelTipo().isEmpty()) {
 			Alert aux = new Alert(AlertType.ERROR);
 			aux.setContentText("error ");
@@ -207,7 +207,7 @@ public class ConocimientoController implements Initializable {
 	}
 
 	@FXML
-	void onXIdiomaButtonAction(ActionEvent event) {
+	void buttonXIdioma(ActionEvent event) {
 		cbIdiomaCombo.valueProperty().set(null);
 	}
 
