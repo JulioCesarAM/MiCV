@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<GridPane fx:id="view" hgap="5.0" prefHeight="480.0" prefWidth="640.0" vgap="5.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<GridPane fx:id="view" hgap="5.0" prefHeight="480.0" prefWidth="640.0" vgap="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <rowConstraints>
       <RowConstraints minHeight="30.0" prefHeight="30.0" />
       <RowConstraints minHeight="30.0" prefHeight="30.0" />
@@ -45,24 +44,24 @@
             <Insets top="5.0" />
          </GridPane.margin>
       </Label>
-      <TextField fx:id="identificacionText" GridPane.columnIndex="1" GridPane.columnSpan="2" />
-      <TextField fx:id="nombreText" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-      <TextField fx:id="apellidosText" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+      <TextField fx:id="identificacionTextField" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+      <TextField fx:id="nombreTextField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+      <TextField fx:id="apellidosTextField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
       <DatePicker fx:id="fechaNacimientoDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <TextArea fx:id="direccionText" prefRowCount="2" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-      <TextField fx:id="codigoPostalText" maxWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <TextField fx:id="localidadText" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-      <ListView fx:id="nacionalidadesList" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <TextArea fx:id="textAreaDireccion" prefRowCount="2" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+      <TextField fx:id="codPostalTextField" maxWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <TextField fx:id="localidadTextField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+      <ListView fx:id="listViewNacionalidades" GridPane.columnIndex="1" GridPane.rowIndex="8" />
       <Label text="País" GridPane.rowIndex="7" />
       <ComboBox fx:id="paisCombo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <VBox spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
          <children>
-            <Button fx:id="nuevaNacionalidadButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNuevaNacionalidadAction" text="+">
+            <Button fx:id="nacionalidadNueva" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNuevaNacionalidadAction" text="+">
                <tooltip>
                   <Tooltip text="Añadir nacionalidad" />
                </tooltip>
             </Button>
-            <Button fx:id="quitarNacionalidadButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onQuitarNacionalidadAction" text="-">
+            <Button fx:id="quitarNacionalidad" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onQuitarNacionalidadAction" text="-">
                <tooltip>
                   <Tooltip text="Quitar nacionalidad" />
                </tooltip>

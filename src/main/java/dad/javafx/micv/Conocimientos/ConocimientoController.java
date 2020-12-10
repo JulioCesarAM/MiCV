@@ -62,16 +62,16 @@ public class ConocimientoController implements Initializable {
 	private Button btnEliminarConocomiento;
 
 	@FXML
-	private TextField denominacionConocimientoTF;
+	private TextField tfDenominacionC;
 
 	@FXML
-	private ComboBox<String> nivelConocimientoCombo = new ComboBox<>();
+	private ComboBox<String> cbConocimientoCombo = new ComboBox<>();
 
 	@FXML
 	private TextField denominacionIdiomaTF;
 
 	@FXML
-	private ComboBox<String> nivelIdiomaCombo = new ComboBox<>();
+	private ComboBox<String> cbIdiomaCombo = new ComboBox<>();
 
 	@FXML
 	private TextField certificacionTF;
@@ -79,8 +79,8 @@ public class ConocimientoController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		nivelConocimientoCombo.getItems().addAll("basico", "medio", "avanzado");
-		nivelIdiomaCombo.getItems().addAll("basico", "medio", "avanzado");
+		cbConocimientoCombo.getItems().addAll("basico", "medio", "avanzado");
+		cbIdiomaCombo.getItems().addAll("basico", "medio", "avanzado");
 		this.conocimientosModelo.addListener((o,ov,nv)->onCambios(o,ov,nv));	
 		denominacionCol.setCellValueFactory(cellData -> cellData.getValue().denominacionProperty());
 		denominacionCol.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -127,8 +127,8 @@ public class ConocimientoController implements Initializable {
 	void onCrearButtonConocimiento(ActionEvent event) {
 
 		Conocimientos auxConocimiento = new Conocimientos();
-		auxConocimiento.setDenominacion(denominacionConocimientoTF.textProperty().get());
-		auxConocimiento.setNivel(nivelConocimientoCombo.getValue().toLowerCase());
+		auxConocimiento.setDenominacion(tfDenominacionC.textProperty().get());
+		auxConocimiento.setNivel(cbConocimientoCombo.getValue().toLowerCase());
 		if (auxConocimiento.getDenominacion().isEmpty() || auxConocimiento.getNivelTipo().isEmpty()) {
 			Alert aux = new Alert(AlertType.ERROR);
 			aux.setContentText("error ");
@@ -142,7 +142,7 @@ public class ConocimientoController implements Initializable {
 
 	@FXML
 	void onXButtonConocimiento(ActionEvent event) {
-		nivelConocimientoCombo.valueProperty().set(null);
+		cbConocimientoCombo.valueProperty().set(null);
 	}
 
 	@FXML
@@ -193,7 +193,7 @@ public class ConocimientoController implements Initializable {
 	void onCrearButtonIdioma(ActionEvent event) {
 		Conocimientos auxConocimientoIdioma = new Conocimientos();
 		auxConocimientoIdioma.setDenominacion(denominacionIdiomaTF.textProperty().get());
-		auxConocimientoIdioma.setNivel(nivelIdiomaCombo.getValue().toLowerCase());
+		auxConocimientoIdioma.setNivel(cbIdiomaCombo.getValue().toLowerCase());
 		auxConocimientoIdioma.setCertificacion(certificacionTF.textProperty().get());
 		if (auxConocimientoIdioma.getDenominacion().isEmpty() || auxConocimientoIdioma.getNivelTipo().isEmpty()) {
 			Alert aux = new Alert(AlertType.ERROR);
@@ -208,7 +208,7 @@ public class ConocimientoController implements Initializable {
 
 	@FXML
 	void onXIdiomaButtonAction(ActionEvent event) {
-		nivelIdiomaCombo.valueProperty().set(null);
+		cbIdiomaCombo.valueProperty().set(null);
 	}
 
 	public ListProperty<Conocimientos> conocimientosModeloProperty() {

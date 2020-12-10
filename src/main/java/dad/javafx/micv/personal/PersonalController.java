@@ -65,7 +65,7 @@ public class PersonalController implements Initializable {
 	private ComboBox<String> paisCombo;
 
 	@FXML
-	private Button BttnNacionalidadNuevan,BttnQuitarNacionalidad;
+	private Button nacionalidadNueva,quitarNacionalidad;
 
 
 
@@ -83,7 +83,7 @@ public class PersonalController implements Initializable {
 		personal.addListener((o, ov, nv) -> onPersonallControllerChanged(o, ov, nv));
 
 		nacionalidadesListas = new ArrayList<>();
-		BttnQuitarNacionalidad.setDisable(true);
+		quitarNacionalidad.setDisable(true);
 
 		try {
 			BufferedReader csvReader = new BufferedReader(new FileReader("src/main/resources/csv/nacionalidades.csv"));
@@ -169,7 +169,7 @@ public class PersonalController implements Initializable {
 				if (!eleccion.isEmpty()) {	
 					
 				listViewNacionalidades.getItems().add(eleccion.get());
-				BttnQuitarNacionalidad.setDisable(false);
+				quitarNacionalidad.setDisable(false);
 				}
 			}
 		
@@ -190,9 +190,9 @@ public class PersonalController implements Initializable {
 			listViewNacionalidades.getItems().remove(eleccion.get());
 
 			if (listViewNacionalidades.getItems().isEmpty()) {
-				BttnQuitarNacionalidad.setDisable(true);
+				quitarNacionalidad.setDisable(true);
 			} else {
-				BttnQuitarNacionalidad.setDisable(false);
+				quitarNacionalidad.setDisable(false);
 			}
 		}
 
