@@ -17,9 +17,9 @@
       </TableView>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" HBox.hgrow="NEVER">
          <children>
-            <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnAñadirConocimiento" text="Añadir conocimiento" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onBtnAñadirIdioma" text="Añadir idioma" />
-            <Button fx:id="btnEliminarConocomiento" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onEliminar" text="Eliminar" />
+            <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onCrearPantallaConocimiento" text="Añadir conocimiento" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCrearPantallaIdioma" text="Añadir idioma" />
+            <Button fx:id="onEliminar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onEliminar" text="Eliminar" />
          </children>
          <HBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

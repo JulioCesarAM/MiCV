@@ -99,7 +99,7 @@ public class ConocimientoController implements Initializable {
 	}
 
 	@FXML
-	void onBtnAñadirConocimiento(ActionEvent event) {
+	void onCrearPantallaConocimiento(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/aConocimientoView.fxml"));
 			loader.setController(this);
@@ -119,7 +119,7 @@ public class ConocimientoController implements Initializable {
 	}
 
 	@FXML
-	void oonCancelarConocimiento(ActionEvent event) {
+	void onCancelarConocimiento(ActionEvent event) {
 		stageConocimiento.close();
 	}
 
@@ -146,7 +146,7 @@ public class ConocimientoController implements Initializable {
 	}
 
 	@FXML
-	void onBtnAñadirIdioma(ActionEvent event) {
+	void onCrearPantallaIdioma(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/aIdiomaConocimientoView.fxml"));
 			loader.setController(this);
